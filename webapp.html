@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Wordle Clone</title>
+  <link rel="stylesheet" href="assets/style.css" /> <!-- Corrected link to custom CSS -->
+</head>
+<body>
+  <h1>Word Guess Game</h1>
+  <p>Guess the 5-letter word!</p>
+  <div id="game">
+    <input type="text" id="guess" maxlength="5" />
+    <button onclick="checkGuess()">Submit</button>
+    <div id="feedback"></div>
+  </div>
+
+  <div class="nav">
+    <a href="scratch.html">← Back to Scratch Page</a>
+  </div>
+
+  <script>
+    const target = "PLANT";
+    function checkGuess() {
+      const guess = document.getElementById("guess").value.toUpperCase();
+      const feedback = document.getElementById("feedback");
+
+      if (guess.length !== 5) {
+        feedback.innerHTML = "Please enter a 5-letter word.";
+        feedback.className = "incorrect";
+        return;
+      }
+
+      if (guess === target) {
+        feedback.innerHTML = "🎉 Correct! You guessed it!";
+        feedback.className = "correct";
+      } else {
+        let hint = "";
+        for (let i = 0; i < 5; i++) {
+          if (guess[i] === target[i]) {
+            hint += `<span style="color:#2ed573">${guess[i]}</span>`;
+          } else if (target.includes(guess[i])) {
+            hint += `<span style="color:#fbc531">${guess[i]}</span>`;
+          } else {
+            hint += `<span style="color:#ff6b81">${guess[i]}</span>`;
+          }
+        }
+        feedback.innerHTML = `Try again: ${hint}`;
+        feedback.className = "";
+      }
+    }
+  </script>
+</body>
+</html>
