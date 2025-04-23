@@ -6,26 +6,175 @@
     <title>Your Page Title</title>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/style.css">
+    <style>
+      /* Add a black border around the snake game canvas */
+      #gameCanvas {
+        border: 5px solid black;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
   </head>  
-<body>
-  <header>
-    <h1>Welcome to the Web App</h1>
-    <nav>
-      <a href="index.html">Professional Page</a>
-      <a href="scratch.html">Scratch Page</a>
-    </nav>    
-  </header>
+  <body>
+    <a id="top"></a> <!-- Anchor for back to top -->
 
-  <section>
-    <h2>Interactive Fun!</h2>
-    <p>Click below to play a simple web game or interact with a cool tool.</p>
-    <a href="https://yurkagon.github.io/Doom-Nukem-CSS/">Start App</a>
-    <br>
-    <a href="https://yurkagon.github.io/Doom-Nukem-CSS/">bonus shooter game</a>
-  </section>
+    <header>
+      <h1>Welcome to the Web App</h1>
+      <nav>
+        <a href="index.html">Professional Page</a>
+        <a href="scratch.html">Scratch Page</a>
+      </nav>    
+    </header>
 
-  <footer>
-    <p>&copy; 2025 My Web App</p>
-  </footer>
-</body>
+    <section>
+      <h2>Interactive Fun!</h2>
+      <p>Try to get the highest score by playing the classic Snake Game!</p>
+      <canvas id="gameCanvas" width="500" height="500"></canvas>
+      <p class="score">Score: <span id="score">0</span></p>
+      <button class="restart" onclick="startGame()">Restart Game</button>
+      <p class="game-over" id="gameOverMessage" style="display: none;">Game Over! Press Restart to play again.</p>
+    </section>
+
+    <section>
+      <h2>Bonus Game</h2>
+      <p>Click below to play a complex web game.</p>
+      <a href="https://yurkagon.github.io/Doom-Nukem-CSS/">Bonus shooter game</a>
+    </section>
+
+    <footer>
+      <p style="text-align: center; margin-top: 5px;">
+        <a href="#top">Back to Top</a>
+      </p>
+      <p>&copy; 2025 My Web App</p>
+    </footer>
+
+    <script>
+      const canvas = document.getElementById("gameCanvas");
+      const ctx = canvas.getContext("2d");
+
+      const scale = 20;
+      const rows = canvas.height / scale;
+      const columns = canvas.width / scale;
+
+      let score = 0;
+      let gameOver = false;
+      let snake, food;
+
+      // Snake class
+      class Snake {
+        constructor() {
+          this.snakeArray = [{ x: 10, y: 10 }];
+          this.direction = "RIGHT";
+        }
+
+        move() {
+          let head = Object.assign({}, this.snakeArray[0]);
+
+          if (this.direction === "UP") head.y -= 1;
+          if (this.direction === "DOWN") head.y += 1;
+          if (this.direction === "LEFT") head.x -= 1;
+          if (this.direction === "RIGHT") head.x += 1;
+
+          this.snakeArray.unshift(head);
+
+          if (head.x === food.x && head.y === food.y) {
+            score++;
+            document.getElementById("score").innerText = score;
+            food = generateFood();
+          } else {
+            this.snakeArray.pop();
+          }
+
+          if (
+            head.x < 0 ||
+            head.x >= columns ||
+            head.y < 0 ||
+            head.y >= rows ||
+            this.collideWithSelf(head)
+          ) {
+            gameOver = true;
+            document.getElementById("gameOverMessage").style.display = "block";
+          }
+        }
+
+        collideWithSelf(head) {
+          for (let i = 1; i < this.snakeArray.length; i++) {
+            if (this.snakeArray[i].x === head.x && this.snakeArray[i].y === head.y) {
+              return true;
+            }
+          }
+          return false;
+        }
+
+        changeDirection(event) {
+          if (event.key === "ArrowUp" && this.direction !== "DOWN") {
+            this.direction = "UP";
+          } else if (event.key === "ArrowDown" && this.direction !== "UP") {
+            this.direction = "DOWN";
+          } else if (event.key === "ArrowLeft" && this.direction !== "RIGHT") {
+            this.direction = "LEFT";
+          } else if (event.key === "ArrowRight" && this.direction !== "LEFT") {
+            this.direction = "RIGHT";
+          }
+        }
+
+        draw() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          this.snakeArray.forEach((segment) => {
+            ctx.fillStyle = "#00FF00";
+            ctx.fillRect(segment.x * scale, segment.y * scale, scale, scale);
+          });
+        }
+      }
+
+      // Food class
+      class Food {
+        constructor() {
+          this.x = Math.floor(Math.random() * columns);
+          this.y = Math.floor(Math.random() * rows);
+        }
+
+        draw() {
+          ctx.fillStyle = "#FF0000";
+          ctx.fillRect(this.x * scale, this.y * scale, scale, scale);
+        }
+      }
+
+      function generateFood() {
+        return new Food();
+      }
+
+      function startGame() {
+        score = 0;
+        document.getElementById("score").innerText = score;
+        gameOver = false;
+        snake = new Snake();
+        food = generateFood();
+        document.getElementById("gameOverMessage").style.display = "none";
+
+        window.addEventListener("keydown", (event) => {
+          if (event.key === "ArrowUp" || event.key === "ArrowDown") {
+            event.preventDefault();
+          }
+          snake.changeDirection(event);
+        });
+
+        gameLoop();
+      }
+
+      function gameLoop() {
+        if (gameOver) return;
+
+        snake.move();
+        snake.draw();
+        food.draw();
+
+        setTimeout(gameLoop, 100);
+      }
+
+      startGame();
+    </script>
+  </body>
 </html>

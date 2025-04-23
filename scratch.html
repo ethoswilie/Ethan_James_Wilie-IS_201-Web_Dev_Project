@@ -1,15 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>From Scratch Page</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/style.css">
-  </head>  
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>From Scratch Page</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+
 <body>
   <header>
-    <h1>Roller Skating Passion</h1>
+    <h1 id="top">Roller Skating Passion</h1>
     <nav>
       <a href="index.html">Professional Page</a>
       <a href="webapp.html">Web App</a>
@@ -19,32 +25,77 @@
   <section>
     <h2>Why I Love Skating</h2>
     <ol>
-      <li>Freedom
+      <li>Unique
         <ul>
-          <li>Movement</li>
-          <li>Expression</li>
+          <li>Most people aren't really good at rollerskating</li>
+          <li>I love to teach people how to skate</li>
         </ul>
       </li>
       <li>Fitness</li>
+        <ul>
+          <li>Great for joint and muscle health</li>
+          <li>Probably the only reason why I didn't get fat my freshman year of college</li>
+        </ul>
     </ol>
   </section>
 
-  <div class="image-block">
-    <img src="my-skates.jpg" alt="My custom roller skates" width="300">
-  </div>
+  <section>
+    <h2>My Custom Skates</h2>
+    <p>I love building skates that reflect style, performance, and personality.</p>
+  
+    <!-- Instagram Embed -->
+    <div class="video-block">
+      <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/tv/CW4sI-QFJs0/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px auto; max-width:400px; height:400px; padding:0; width:100%;">
+      </blockquote>
+    </div>
+  </section>
+  
+  <script async src="//www.instagram.com/embed.js"></script>
 
-  <div class="video-block">
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
-  </div>
+  <section>
+    <h2>Skating Inspiration Videos</h2>
+  
+    <div class="video-block">
+      <h3>Video 1: Rythm Skating</h3>
+      <iframe width="560" height="315" 
+        src="https://www.youtube.com/embed/e9hm-RmVrQM" 
+        frameborder="0" allowfullscreen>
+      </iframe>
+    </div>
+  
+    <div class="video-block">
+      <h3>Video 2: Favorite Skating Montage</h3>
+      <iframe width="560" height="315" 
+        src="https://www.youtube.com/embed/csAtPXQlEuA?si=z6Bu-A1OaEs4kLxs" 
+        title="YouTube video player" frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+      </iframe>
+    </div>
+    
+  </section>
+
+  <section>
+    <h2>Roller Skating Flat Track Stats Dashboard</h2>
+    <p>Explore the flat track statistics in this interactive Tableau dashboard.</p>
+  
+    <!-- Tableau Visualization Embed -->
+    <div class="tableau-embed">
+      <iframe src="https://public.tableau.com/views/FlatTrackStatsData/Dashboard2?:embed=y&:display_count=yes&:showVizHome=no" width="100%" height="600px" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </section>  
 
   <section>
     <h2>Follow My Roller Skate Journey</h2>
-    <p>Check out my roller skate making on Instagram: <a href="https://www.instagram.com/sprezzatura.skates/" target="_blank">@sprezzatura.skates</a></p>
+    <p>
+      Check out my skate-making on Instagram: 
+      <a href="https://www.instagram.com/sprezzatura.skates/" target="_blank">@sprezzatura.skates</a>
+    </p>
   </section>
 
   <footer>
     <p><a href="#top">Back to top</a></p>
-    <p>&copy; 2025 My Scratch Page</p>
+    <p>&copy; 2025 Ethan James Wilie</p>
   </footer>
 </body>
 </html>

@@ -17,43 +17,65 @@ body {
 
 /* Header */
 header {
-  text-align: center;
+  width: 100%;
   background-color: #e0f2f1;
-  padding: 20px;
-  border-radius: 8px;
+  padding: 40px 20px 20px 20px;
+  border-radius: 0;
   margin-bottom: 20px;
+  text-align: center;
 }
 
+/* Title */
 h1 {
-  font-size: 3rem;
+  font-size: clamp(2.5rem, 8vw, 12rem); /* Responsive scaling */
   color: #00796b;
+  margin: 0 auto 20px auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* Navigation */
 nav {
-  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
 }
 
 nav a {
   text-decoration: none;
   color: #00796b;
   font-size: 1.1rem;
-  margin: 0 15px;
 }
 
 nav a:hover {
   color: #004d40;
 }
 
+
 /* Sections */
 section {
-  margin-bottom: 20px;
+  margin: 0 auto 20px auto;
+  padding: 0 40px;
+  max-width: 800px;
 }
 
 h2 {
   font-size: 2rem;
   color: #004d40;
   margin-bottom: 10px;
+}
+
+/* Indentation for sub-list items */
+section ul ul {
+  margin-left: 1.5rem;
+  list-style-type: circle;
+}
+
+/* Indentation for content under main headings (e.g., Brigham Young University, HTML/CSS) */
+section p, section ul {
+  margin-left: 2rem;
 }
 
 /* Image and Video */
